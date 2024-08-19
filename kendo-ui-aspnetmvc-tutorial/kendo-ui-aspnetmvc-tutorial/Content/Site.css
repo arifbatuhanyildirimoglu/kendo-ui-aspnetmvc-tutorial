@@ -1,0 +1,100 @@
+﻿/* Global */
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+article {
+    background-color: #F5F6F6;
+    height: 100vh;
+}
+
+/* Top Bar */
+
+#app-title-bar {
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
+    #app-title-bar .title {
+        font-size: 22px;
+        text-transform: uppercase;
+    }
+
+/* App */
+#employee-details {
+    padding-top: 20px;
+}
+
+#employee-about {
+    font-size: 18px;
+    text-align: center;
+}
+
+#employee-list > ul {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    list-style: none;
+}
+
+#employee-list img, #employee-about img {
+    margin-right: 5px;
+}
+
+#employee-list img {
+    border-width: 1px;
+    max-width: 30px;
+}
+
+
+#employee-list div {
+    padding: 5px 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+}
+
+    #employee-list div:hover {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.chart-wrap {
+    text-align: right;
+    background-color: #fff;
+    padding: 10px 10px;
+    border: 1px solid #E0E0E0;
+    margin-top: 10px;
+}
+
+.chart-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: right;
+    color: #9DA2A4;
+}
+
+.sales-report-value {
+    text-transform: uppercase;
+    font-size: 28px;
+}
+/* Small Devices, Tablets, and Up */
+@media only screen and (min-width : 768px) {
+    #employee-about {
+        text-align: left;
+    }
+
+    #app-title-bar .title {
+        text-align: left;
+    }
+
+    #main-section-content {
+        margin-left: 320px;
+    }
+
+    .app-wrapper {
+        position: relative;
+    }
+}
