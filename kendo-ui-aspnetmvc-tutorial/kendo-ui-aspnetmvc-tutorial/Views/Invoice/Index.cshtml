@@ -1,20 +1,17 @@
-﻿@using Telerik.Scaffolders.Models.Grid
-
+﻿@{ Layout = null; }
 @(Html.Kendo().Grid<KendoQsBoilerplate.Invoice>()
-    .Name("grid")
+       .Name("EmployeeSales")
        .Columns(columns =>
        {
          columns.Bound(c => c.CustomerName);
-         columns.Bound(c => c.OrderDate);
+         columns.Bound(c => c.OrderDate).Format("{0:MM/dd/yyyy}");
          columns.Bound(c => c.ProductName);
          columns.Bound(c => c.UnitPrice);
          columns.Bound(c => c.Quantity);
          columns.Bound(c => c.Salesperson);
        })
-        .Editable(editable => editable.Mode(GridEditMode.InLine))
         .ToolBar(toolbar =>
         {
-          toolbar.Create();
           toolbar.Excel();
           toolbar.Pdf();
         })
