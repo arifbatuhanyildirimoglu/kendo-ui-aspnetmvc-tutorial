@@ -27,26 +27,16 @@
     <nav id="employee-list">
       <h3>Team members</h3>
       <!-- Employee List View -->
-      <ul>
-        <li class="employee">
-          <div>
-            @Html.Placehold(30, 30, "E")
-            <span>Full Name</span>
-          </div>
-        </li>
-        <li class="employee">
-          <div>
-            @Html.Placehold(30, 30, "E")
-            <span>Full Name</span>
-          </div>
-        </li>
-        <li class="employee">
-          <div>
-            @Html.Placehold(30, 30, "E")
-            <span>Full Name</span>
-          </div>
-        </li>
-      </ul>
+      @(Html.Kendo().ListView<KendoQsBoilerplate.Employee>()
+                    .Name("EmployeesList")
+                    .ClientTemplateId("EmployeeItemTemplate")
+                    .TagName("ul")
+                    .DataSource(dataSource =>
+                    {
+                      dataSource.Read(read => read.Action("EmployeeList_Read", "Home"));
+                    })
+                    .Selectable(s => s.Mode(ListViewSelectionMode.Single))
+      )
     </nav>
   </div>
   <!-- /Menu Panel -->
@@ -88,6 +78,14 @@
 </div>
 
 <!-- Kendo Templates -->
+<script type="text/x-kendo-tmpl" id="EmployeeItemTemplate">
+  <li class="employee">
+    <div>
+      <img src="@(Url.Content("~/content/employees/"))#:EmployeeId#-t.png" />
+      <span> #: FullName #</span>
+    </div>
+  </li>
+</script>
 <!-- /Kendo Templates -->
 
 @section Scripts {
