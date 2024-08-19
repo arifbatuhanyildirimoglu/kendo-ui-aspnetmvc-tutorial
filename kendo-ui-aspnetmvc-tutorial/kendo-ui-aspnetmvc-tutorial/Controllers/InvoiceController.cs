@@ -35,36 +35,6 @@ namespace Telerik.Scaffolders.Controllers
             return Json(dsResult);
         }
 
-        public ActionResult Create([DataSourceRequest] DataSourceRequest request, Invoice model)
-        {
-            if (model != null && ModelState.IsValid)
-            {
-                // service.Create(model); //save to DB
-            }
-
-            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
-        }
-
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request, Invoice model)
-        {
-            if (model != null && ModelState.IsValid)
-            {
-                // service.Update(model); //update model to DB
-            }
-
-            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
-        }
-
-        public ActionResult Delete([DataSourceRequest] DataSourceRequest request, Invoice model)
-        {
-            if (model != null && ModelState.IsValid)
-            {
-                // service.Delete(model); //delete from DB
-            }
-
-            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
-        }
-
     }
 }
 

@@ -15,6 +15,8 @@
         .ToolBar(toolbar =>
         {
           toolbar.Create();
+          toolbar.Excel();
+          toolbar.Pdf();
         })
         .Pageable()
         .Sortable()
@@ -23,8 +25,5 @@
              .PageSize(20)
              .Model(model => model.Id(p => p.OrderID))
              .Read(read => read.Action("Read", "Invoice"))
-             .Create(update => update.Action("Create", "Invoice"))
-             .Update(update => update.Action("Update", "Invoice"))
-             .Destroy(update => update.Action("Delete", "Invoice"))
     )
 )
