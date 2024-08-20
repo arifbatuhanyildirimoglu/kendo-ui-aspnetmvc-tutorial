@@ -70,7 +70,7 @@
             <h3 class="chart-title">Monthly Average Sales</h3>
             <p class="sales-report-value" id="EmployeeAverageSalesLabel"></p>
             <!-- Montly Sales Chart -->
-            @Html.Placehold(430, 120, "Chart")
+            @Html.Partial("_MonthlySalesByEmployee")
           </div>
         </div>
       </div>
@@ -123,6 +123,7 @@
       updateEmployeeAvatar();
       refreshGrid();
       refreshEmployeeQuarterSales();
+      refreshEmployeeAverageSales();
     }
 
     function getEmployeeFilter() {
@@ -148,6 +149,11 @@
     function refreshEmployeeQuarterSales() {
       var employeeQuarterSales = $("#EmployeeQuarterSales").data("kendoChart");
       employeeQuarterSales.dataSource.read();
+    }
+
+    function refreshEmployeeAverageSales() {
+      var employeeAverageSales = $("#EmployeeAverageSales").data("kendoChart");
+      employeeAverageSales.dataSource.read();
     }
   </script>
 }

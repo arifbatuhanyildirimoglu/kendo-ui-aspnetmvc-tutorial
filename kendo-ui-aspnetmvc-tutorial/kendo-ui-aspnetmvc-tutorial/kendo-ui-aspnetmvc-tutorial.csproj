@@ -1719,6 +1719,7 @@
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\Home\_QuarterToDateSales.cshtml" />
+    <Content Include="Views\Home\_MonthlySalesByEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

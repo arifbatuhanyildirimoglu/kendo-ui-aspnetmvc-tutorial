@@ -29,6 +29,13 @@ public class HomeController : Controller
 		return Json(result, JsonRequestBehavior.AllowGet);
 	}
 
+	public ActionResult EmployeeAverageSales(int employeeId, DateTime statsFrom, DateTime statsTo)
+	{
+		var result = EmployeeAverageSalesQuery(employeeId, statsFrom, statsTo);
+
+		return Json(result, JsonRequestBehavior.AllowGet);
+	}
+
 	#region Quick Start Primer
 	// These methods were added to assist with the quickstart guide.
 	private IEnumerable<MonthlySalesByEmployeeViewModel> EmployeeAverageSalesQuery(int employeeId, DateTime statsFrom, DateTime statsTo)

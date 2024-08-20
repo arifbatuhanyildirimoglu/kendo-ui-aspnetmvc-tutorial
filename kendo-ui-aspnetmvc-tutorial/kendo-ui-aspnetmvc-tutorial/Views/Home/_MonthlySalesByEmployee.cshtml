@@ -1,0 +1,31 @@
+﻿
+@(Html.Kendo().Chart<KendoQsBoilerplate.MonthlySalesByEmployeeViewModel>()
+              .Name("EmployeeAverageSales")
+              .HtmlAttributes(new { style = "height:30px;" })
+              .Series(series =>
+              {
+                series.Line(model => model.EmployeeSales)
+                .Width(1.5)
+                .Markers(m => m.Visible(false))
+                .Tooltip(t => t.Template("#=kendo.toString(value, 'c2')#"));
+              })
+              .CategoryAxis(ca => ca
+                .Date()
+                .Categories(model => model.Date)
+                .Visible(false)
+                .MajorGridLines(m => m.Visible(false))
+              )
+              .ValueAxis(va => va.Numeric()
+                .Visible(false)
+                .Labels(lab => lab.Visible(false))
+                .MajorGridLines(m => m.Visible(false))
+              )
+              .Legend(leg => leg.Visible(false))
+              .DataSource(ds => ds
+                .Read(read => read.Action("EmployeeAverageSales", "Home")
+                .Data("getEmployeeFilter")
+                )
+                .Aggregates(a => a.Add(model => model.EmployeeSales).Average())
+              )
+              .AutoBind(false)
+)
