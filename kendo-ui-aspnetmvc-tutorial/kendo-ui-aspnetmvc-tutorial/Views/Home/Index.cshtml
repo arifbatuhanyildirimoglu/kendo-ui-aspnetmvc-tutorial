@@ -17,12 +17,20 @@
     <p>@Html.Label("Stats from")</p>
     <p>
       <!-- Stats From Date Picker -->
-      @Html.TextBox("StatsFrom", new DateTime(1996, 1, 1))
+      @(Html.Kendo().DatePicker()
+                    .Name("StatsFrom")
+                    .Value(new DateTime(1996, 1, 1))
+                    .Events(e => e.Change("onCriteriaChange"))
+      )
     </p>
     <p>@Html.Label("Stats to")</p>
     <p>
       <!-- Stats To Date Picker -->
-      @Html.TextBox("StatsFrom", new DateTime(1998, 8, 1))
+      @(Html.Kendo().DatePicker()
+                    .Name("StatsTo")
+                    .Value(new DateTime(1998, 8, 1))
+                    .Events(e => e.Change("onCriteriaChange"))
+      )
     </p>
     <nav id="employee-list">
       <h3>Team members</h3>
@@ -98,18 +106,42 @@
     function onListDataBound(e) {
       this.select($(".employee:first"))
     }
+
     function getSelectedEmployee() {
       var employeeList = $("#EmployeesList").data("kendoListView"),
           employee = employeeList.dataSource.getByUid(employeeList.select().attr("data-uid"));
       return employee;
     }
+
     function updateEmployeeAvatar() {
       var employee = getSelectedEmployee(),
         template = kendo.template($("#employeeAvatarTemplate").html());
       $("#employee-about").html(template(employee));
     }
+
     function onCriteriaChange() {
       updateEmployeeAvatar();
+      refreshGrid();
+    }
+
+    function getEmployeeFilter() {
+      var employee = getSelectedEmployee(),
+        statsFrom = $("#StatsFrom").data("kendoDatePicker"),
+        statsTo = $("#StatsTo").data("kendoDatePicker");
+
+      var filter = {
+        employeeId: employee.EmployeeId,
+        salesPerson: employee.FullName,
+        statsFrom: statsFrom.value(),
+        statsTo: statsTo.value()
+      }
+
+      return filter;
+    }
+
+    function refreshGrid() {
+      var employeeSales = $("#EmployeeSales").data("kendoGrid");
+      employeeSales.dataSource.read();
     }
   </script>
 }

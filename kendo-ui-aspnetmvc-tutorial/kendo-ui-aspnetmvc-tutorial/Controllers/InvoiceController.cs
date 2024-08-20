@@ -9,30 +9,31 @@ using KendoQsBoilerplate;
 
 namespace Telerik.Scaffolders.Controllers
 {
-    public class InvoiceController : Controller
-    {
-        public ActionResult Index()
-        {
-            return View();
-        }
-        
-        public ActionResult Read([DataSourceRequest] DataSourceRequest request)
-        {
-            var result = Enumerable.Range(1, 50).Select(i => new Invoice
-            {
-                OrderID = i,
-                CustomerName = "Customer" + i,
-                OrderDate = new DateTime(2016, 9, 15).AddDays(i % 7),
-                ProductName = "Product " + i,
-                UnitPrice = i * 10,
-                Quantity = Convert.ToInt16(i),
-                Salesperson= "Salesperson" + i
-            });
+	public class InvoiceController : Controller
+	{
+		private readonly NorthwindDBContext db = new NorthwindDBContext();
 
-            var dsResult = result.ToDataSourceResult(request);
-            return Json(dsResult);
-        }
+		public ActionResult Index()
+		{
+			return View();
+		}
 
-    }
+		public ActionResult Read([DataSourceRequest] DataSourceRequest request, string salesPerson, DateTime statsFrom, DateTime statsTo)
+		{
+			var invoices = db.Invoices.Where(inv => inv.Salesperson == salesPerson).Where(inv => inv.OrderDate >= statsFrom && inv.OrderDate <= statsTo);
+			DataSourceResult result = invoices.ToDataSourceResult(request, invoice => new {
+				OrderID = invoice.OrderID,
+				CustomerName = invoice.CustomerName,
+				OrderDate = invoice.OrderDate,
+				ProductName = invoice.ProductName,
+				UnitPrice = invoice.UnitPrice,
+				Quantity = invoice.Quantity,
+				Salesperson = invoice.Salesperson
+			});
+
+			return Json(result);
+		}
+
+	}
 }
 
