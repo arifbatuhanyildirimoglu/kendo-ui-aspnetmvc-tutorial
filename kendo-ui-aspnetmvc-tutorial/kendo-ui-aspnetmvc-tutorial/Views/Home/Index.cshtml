@@ -62,7 +62,7 @@
             <h3 class="chart-title">Quarter to date sales</h3>
             <p class="sales-report-value" id="EmployeeQuarterSalesLabel"></p>
             <!-- QTD Sales Chart -->
-            @Html.Placehold(430, 120, "Chart")
+            @Html.Partial("_QuarterToDateSales")
           </div>
         </div>
         <div class="col-xs-12 col-lg-4">
@@ -122,6 +122,7 @@
     function onCriteriaChange() {
       updateEmployeeAvatar();
       refreshGrid();
+      refreshEmployeeQuarterSales();
     }
 
     function getEmployeeFilter() {
@@ -142,6 +143,11 @@
     function refreshGrid() {
       var employeeSales = $("#EmployeeSales").data("kendoGrid");
       employeeSales.dataSource.read();
+    }
+
+    function refreshEmployeeQuarterSales() {
+      var employeeQuarterSales = $("#EmployeeQuarterSales").data("kendoChart");
+      employeeQuarterSales.dataSource.read();
     }
   </script>
 }

@@ -20,6 +20,15 @@ public class HomeController : Controller
 		return Json(employees.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
 	}
 
+	public ActionResult EmployeeQuarterSales(int employeeId, DateTime statsTo)
+	{
+		DateTime startDate = statsTo.AddMonths(-3);
+
+		var result = EmployeeQuarterSalesQuery(employeeId, statsTo, startDate);
+
+		return Json(result, JsonRequestBehavior.AllowGet);
+	}
+
 	#region Quick Start Primer
 	// These methods were added to assist with the quickstart guide.
 	private IEnumerable<MonthlySalesByEmployeeViewModel> EmployeeAverageSalesQuery(int employeeId, DateTime statsFrom, DateTime statsTo)

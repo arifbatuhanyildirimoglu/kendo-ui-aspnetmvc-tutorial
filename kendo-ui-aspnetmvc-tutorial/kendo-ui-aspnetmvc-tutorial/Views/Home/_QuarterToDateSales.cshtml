@@ -1,0 +1,21 @@
+﻿@(Html.Kendo().Chart<KendoQsBoilerplate.QuarterToDateSalesViewModel>()
+              .Name("EmployeeQuarterSales")
+              .HtmlAttributes(new { style = "height:30px;" })
+              .Series(series =>
+              {
+                series.Bullet(model => model.Current, model => model.Target);
+              })
+              .CategoryAxis(ca => ca.Labels(lab => lab.Visible(false)).MajorGridLines(m => m.Visible(false)).Visible(false)
+              )
+              .ValueAxis(va => va.Numeric()
+                .Labels(lab => lab.Visible(false))
+                .MajorGridLines(m => m.Visible(false))
+                .MajorTicks(mT => mT.Visible(false))
+              )
+              .Legend(leg => leg.Visible(false))
+              .DataSource(ds => ds
+                .Read(read => read.Action("EmployeeQuarterSales", "Home")
+                .Data("getEmployeeFilter"))
+              )
+              .AutoBind(false)
+)

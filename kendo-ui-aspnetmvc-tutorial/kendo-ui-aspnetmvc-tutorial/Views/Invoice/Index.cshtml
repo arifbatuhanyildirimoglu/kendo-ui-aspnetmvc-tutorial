@@ -22,8 +22,9 @@
              .PageSize(20)
              .Model(model => model.Id(p => p.OrderID))
              .Read(read => read.Action("Read", "Invoice")
-             .Data("getEmployeeFilter")     
-        )
+              .Data("getEmployeeFilter")     
+             )
         
-    ).AutoBind(false)
+        )
+        .AutoBind(false)
 )
