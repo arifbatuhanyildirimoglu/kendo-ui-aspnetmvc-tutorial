@@ -18,4 +18,5 @@
                 .Data("getEmployeeFilter"))
               )
               .AutoBind(false)
+              .Events(e => e.DataBound("onQuarterSalesDataBound"))
 )

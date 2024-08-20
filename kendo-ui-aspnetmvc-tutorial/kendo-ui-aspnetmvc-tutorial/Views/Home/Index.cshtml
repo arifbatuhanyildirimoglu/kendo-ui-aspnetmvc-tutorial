@@ -155,5 +155,22 @@
       var employeeAverageSales = $("#EmployeeAverageSales").data("kendoChart");
       employeeAverageSales.dataSource.read();
     }
+
+    function onQuarterSalesDataBound(e) {
+      var data = this.dataSource.at(0);
+      $("#EmployeeQuarterSalesLabel").text(kendo.toString(data.Current, "c2"));
+    }
+
+    function onAverageSalesDataBound(e) {
+      var label = $("#EmployeeAverageSalesLabel"),
+        data = this.dataSource.aggregates();
+
+      if (data.EmployeeSales) {
+        label.text(kendo.toString(data.EmployeeSales.average, "c2"));
+      }
+      else {
+        label.text(kendo.toString(0, "c2"));
+      }
+    }
   </script>
 }
