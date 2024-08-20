@@ -9,47 +9,65 @@
     <h1 class="title">@ViewBag.Title</h1>
   </div>
 </section>
+<div class="hamburger">
+  @(Html.Kendo().Button()
+                .Name("menuPanelOpen")
+                .Content("menu")
+                .Icon("hbars")
+                .HtmlAttributes(new { @class = "k-rpanel-toggle" })
+  )
+</div>
 
 <div class="app-wrapper">
   <!-- Menu Panel -->
-  <div class="hidden-xs" style="float:left;">
-    <h3>Report Range</h3>
-    <p>@Html.Label("Stats from")</p>
-    <p>
-      <!-- Stats From Date Picker -->
-      @(Html.Kendo().DatePicker()
-                    .Name("StatsFrom")
-                    .Value(new DateTime(1996, 1, 1))
-                    .Events(e => e.Change("onCriteriaChange"))
-      )
-    </p>
-    <p>@Html.Label("Stats to")</p>
-    <p>
-      <!-- Stats To Date Picker -->
-      @(Html.Kendo().DatePicker()
-                    .Name("StatsTo")
-                    .Value(new DateTime(1998, 8, 1))
-                    .Events(e => e.Change("onCriteriaChange"))
-      )
-    </p>
-    <nav id="employee-list">
-      <h3>Team members</h3>
-      <!-- Employee List View -->
-      @(Html.Kendo().ListView<KendoQsBoilerplate.Employee>()
-                    .Name("EmployeesList")
-                    .ClientTemplateId("EmployeeItemTemplate")
-                    .TagName("ul")
-                    .DataSource(dataSource =>
-                    {
-                      dataSource.Read(read => read.Action("EmployeeList_Read", "Home"));
-                      dataSource.PageSize(9);
-                    })
-                    .Selectable(s => s.Mode(ListViewSelectionMode.Single))
-                    .Events(e => e.DataBound("onListDataBound")
-                                  .Change("onCriteriaChange"))
-      )
-    </nav>
+  @(Html.Kendo().ResponsivePanel().Name("menuPanel").Breakpoint(768).Content(
+@<div>
+  <div class="text-right">
+    @(Html.Kendo().Button()
+                  .Name("menuPanelClose")
+                  .Content("Close")
+                  .Icon("close")
+                  .HtmlAttributes(new { @class = "k-rpanel-toggle" })
+    )
   </div>
+  <h3>Report Range</h3>
+  <p>@Html.Label("Stats from")</p>
+  <p>
+    <!-- Stats From Date Picker -->
+    @(Html.Kendo().DatePicker()
+                  .Name("StatsFrom")
+                  .Value(new DateTime(1996, 1, 1))
+                  .Events(e => e.Change("onCriteriaChange"))
+    )
+  </p>
+  <p>@Html.Label("Stats to")</p>
+  <p>
+    <!-- Stats To Date Picker -->
+    @(Html.Kendo().DatePicker()
+                  .Name("StatsTo")
+                  .Value(new DateTime(1998, 8, 1))
+                  .Events(e => e.Change("onCriteriaChange"))
+    )
+  </p>
+  <nav id="employee-list">
+    <h3>Team members</h3>
+    <!-- Employee List View -->
+    @(Html.Kendo().ListView<KendoQsBoilerplate.Employee>()
+                  .Name("EmployeesList")
+                  .ClientTemplateId("EmployeeItemTemplate")
+                  .TagName("ul")
+                  .DataSource(dataSource =>
+                  {
+                    dataSource.Read(read => read.Action("EmployeeList_Read", "Home"));
+                    dataSource.PageSize(9);
+                  })
+                  .Selectable(s => s.Mode(ListViewSelectionMode.Single))
+                  .Events(e => e.DataBound("onListDataBound")
+                                .Change("onCriteriaChange"))
+    )
+  </nav>
+</div>
+))
   <!-- /Menu Panel -->
 
   <section id="main-section-content" class="row">
@@ -109,7 +127,7 @@
 
     function getSelectedEmployee() {
       var employeeList = $("#EmployeesList").data("kendoListView"),
-          employee = employeeList.dataSource.getByUid(employeeList.select().attr("data-uid"));
+        employee = employeeList.dataSource.getByUid(employeeList.select().attr("data-uid"));
       return employee;
     }
 

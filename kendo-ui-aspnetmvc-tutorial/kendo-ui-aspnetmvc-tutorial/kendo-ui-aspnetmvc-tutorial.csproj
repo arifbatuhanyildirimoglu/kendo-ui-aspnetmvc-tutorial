@@ -992,7 +992,7 @@
     <Content Include="Content\site-nova.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css" />
     <Content Include="Ipsum_examples.txt" />
     <Content Include="Kendo Quickstart Boilerplate v1.0.1 - NOTICE.txt %28FINAL 9-19-2018%29.txt" />
     <Content Include="Scripts\bootstrap.bundle.js" />

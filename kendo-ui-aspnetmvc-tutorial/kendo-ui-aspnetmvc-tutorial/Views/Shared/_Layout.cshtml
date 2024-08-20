@@ -6,8 +6,6 @@
   <title>@ViewBag.Title - UI for MVC / Kendo Quick Start Guide</title>
 
   <link href="https://cdn.kendostatic.com/2022.3.1109/styles/kendo.default-ocean-blue.min.css" rel="stylesheet" type="text/css" />
-  <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
-  <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
   <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
@@ -17,11 +15,11 @@
   @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="container-fluid body-content">
-        @RenderBody()
-    </div>
+  <div class="container-fluid body-content">
+    @RenderBody()
+  </div>
 
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+  @Scripts.Render("~/bundles/bootstrap")
+  @RenderSection("scripts", required: false)
 </body>
 </html>
